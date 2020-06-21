@@ -12,7 +12,7 @@ void	ft_putstr(char *str)
 
 	i = 0;
 
-	while	(i < strlen(str))
+	while	(str[i] != '\0')
 	{
 		ft_putchar(str[i]);
 		i++;
