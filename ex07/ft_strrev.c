@@ -1,7 +1,7 @@
 char	*ft_strrev(char *str)
 {
-	int		end;
-	int		start;
+	int	end;
+	int	start;
 	char	tmp;
 	
 	end = 0;
