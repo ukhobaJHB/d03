@@ -1,48 +1,29 @@
-#include <unistd.h>
-#include <stdlib.h>
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putnbr(int nbr)
-{
-	char	str[256];
-	int	i;
-
-	i = 0;
-
-	while	(nbr >= 0)
-	{
-		
-		str[i] = nbr % 10 + '0';
-
-
-		i++;
-		nbr /= 10;
-	}
-
-	while	(i >= 0)
-	{
-		ft_putchar(str[i]);
-		i--;
-	}
-	ft_putchar('\n');
-}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ukhoba <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/23 11:40:38 by ukhoba            #+#    #+#             */
+/*   Updated: 2020/06/23 11:40:52 by ukhoba           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 int	ft_atoi(char *str)
 {
-	int	i;
-	int	itoa;
+	int		i;
+	int		is_neg;
+	int		itoa;
 
 	i = 0;
+	is_neg = 1;
 	itoa = 0;
 	while	(str[i])
 	{
-		if	((i == 0 && str[i] == '-') || (i == 0 && str[i] == '+'))
+		if	((i == 0 && str[i] == '-'))
 		{
-			
+			is_neg = -1;	
 		}
 
 		if	(str[i] >= '0' && str[i] <= '9')
@@ -50,23 +31,12 @@ int	ft_atoi(char *str)
 			itoa *= 10;
 			itoa += str[i] - '0';
 		}
+		else{
+			str[i + 1] = '\0';
+		}
 
 		i++;
 	}
 
-	return itoa;
-}
-
-int	main(void)
-{
-	char str[20] = "0";
-
-	int val;
-
-	val = atoi(str);
-	ft_putnbr(val);
-	ft_putchar('\n');
-	ft_putnbr(ft_atoi(str));
-
-	return 0;
+	return itoa * is_neg;
 }
